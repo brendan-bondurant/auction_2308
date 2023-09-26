@@ -82,7 +82,34 @@ RSpec.describe Auction do
       @item4.add_bid(@attendee3, 50)
       expect(@auction.bidders).to eq(['Megan', 'Mike'])
       @item3.add_bid(@attendee2, 15)
-      expect(@auction.bidders).to eq(['Megan', 'Mike', 'Bob'])
+      expect(@auction.bidders).to eq(["Bob", "Megan", "Mike"])
+      @item3.add_bid(@attendee2, 15)
+    end
+    it 'will not duplicate names' do
+      @auction.add_item(@item1)
+      @auction.add_item(@item3)
+      @auction.add_item(@item4)
+      @item1.add_bid(@attendee1, 22)
+      @item4.add_bid(@attendee3, 50)
+      @item3.add_bid(@attendee2, 15)
+      @item2.add_bid(@attendee2, 15)
+      expect(@auction.bidders).to eq(["Bob", "Megan", "Mike"])
+    end
+  end
+
+  describe '#bidder_info' do 
+    it 'tells you all of their info' do 
+      @auction.add_item(@item1)
+      @auction.add_item(@item2)
+      @auction.add_item(@item3)
+      @auction.add_item(@item4)
+      @auction.add_item(@item5)
+      @item1.add_bid(@attendee2, 20)
+      @item1.add_bid(@attendee1, 22)
+      @item4.add_bid(@attendee3, 50)
+      @item3.add_bid(@attendee2, 15)
+      expect(@auction.bidder_info.keys).to eq([@attendee2, @attendee1, @attendee3])
+      require 'pry'; binding.pry
     end
   end
 

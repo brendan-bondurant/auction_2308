@@ -49,6 +49,7 @@ RSpec.describe Item do
       expect(@item1.current_high_bid).to eq(22)
     end
   end
+  describe 
 
 
 end

@@ -30,7 +30,7 @@ class Auction
         @bidders << person.name
       end
     end
-    @bidders.uniq
+    @bidders = @bidders.uniq.sort.flatten
   end
 
   def potential_revenue
@@ -41,5 +41,19 @@ class Auction
       end
     end
     potential_revenue
+  end
+
+  def bidder_info
+    bidder_info = Hash.new
+    bid_on = []
+    @items.each do |item|
+      item.bids.each do |person|
+        if item.bids.keys.include?(person.first)
+          bid_on << item
+        end
+        bidder_info[person.first] = {:value => person.first.budget.delete('$').to_i, :items => bid_on.uniq}
+      end
+    end
+    bidder_info
   end
 end
