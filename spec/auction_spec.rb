@@ -109,7 +109,6 @@ RSpec.describe Auction do
       @item4.add_bid(@attendee3, 50)
       @item3.add_bid(@attendee2, 15)
       expect(@auction.bidder_info.keys).to eq([@attendee2, @attendee1, @attendee3])
-      require 'pry'; binding.pry
     end
   end
 

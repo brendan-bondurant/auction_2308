@@ -27,12 +27,13 @@ RSpec.describe Item do
     end
   end
 
-  describe "#bids" do
+  describe '#bids' do
     it 'can have bids' do
       expect(@item1.bids).to be_a(Hash)
     end
   end
-  describe "#add_bid" do
+
+  describe '#add_bid' do
     it 'can be bid on' do
       expect(@item1.bids).to be_a(Hash)
       @item1.add_bid(@attendee2, 20)
@@ -41,7 +42,8 @@ RSpec.describe Item do
       expect(@item1.bids).to eq({@attendee2 => 20, @attendee1 => 22})
     end
   end
-  describe "#current_high_bid" do 
+
+  describe '#current_high_bid' do 
     it 'tells you the highest bid' do
       @item1.add_bid(@attendee2, 20)
       expect(@item1.current_high_bid).to eq(20)
@@ -49,7 +51,13 @@ RSpec.describe Item do
       expect(@item1.current_high_bid).to eq(22)
     end
   end
-  describe 
 
-
+  describe '#close_bidding' do 
+    it 'can stop bidding' do
+      @item1.add_bid(@attendee2, 20)
+      @item1.add_bid(@attendee1, 22)
+      @item1.close_bidding
+      expect(@item1.add_bid(@attendee1, 24)).to eq('Bidding is closed')
+    end
+  end
 end
