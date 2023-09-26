@@ -6,7 +6,6 @@ class Item
     @open = true
   end
 
-
   def add_bid(attendee, amount)
     if @open = true
       @bids[attendee] = amount

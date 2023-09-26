@@ -15,7 +15,7 @@ RSpec.describe Auction do
   end
 
   describe '#initialize' do
-    it 'exits' do
+    it 'exists' do
       expect(@auction).to be_a(Auction)
     end
     it 'empty array for items' do
@@ -36,7 +36,7 @@ RSpec.describe Auction do
     it 'can tell the names of items' do
       @auction.add_item(@item1)
       @auction.add_item(@item2)
-      expect(@auction.item_names).to eq(["Chalkware Piggy Bank", "Bamboo Picture Frame"])
+      expect(@auction.item_names).to eq(['Chalkware Piggy Bank', 'Bamboo Picture Frame'])
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe Auction do
     end
   end
 
-  describe "#potential_revenue" do 
+  describe '#potential_revenue' do 
     it 'tells you how much money can be made' do
       @auction.add_item(@item1)
       @auction.add_item(@item2)
@@ -111,7 +111,4 @@ RSpec.describe Auction do
       expect(@auction.bidder_info.keys).to eq([@attendee2, @attendee1, @attendee3])
     end
   end
-
-
-
 end

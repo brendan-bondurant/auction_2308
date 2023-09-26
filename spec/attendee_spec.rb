@@ -5,7 +5,7 @@ RSpec.describe Attendee do
     @attendee = Attendee.new({name: 'Megan', budget: '$50'})
   end
 
-  describe "#initialize" do
+  describe '#initialize' do
     it 'exists' do
       expect(@attendee).to be_a(Attendee)
     end
