@@ -71,6 +71,21 @@ RSpec.describe Auction do
     end
   end
 
+  describe '#bidders' do
+    it 'tells who has bid on something' do
+      expect(@auction.bidders).to eq([])
+      @auction.add_item(@item1)
+      @auction.add_item(@item3)
+      @auction.add_item(@item4)
+      @item1.add_bid(@attendee1, 22)
+      expect(@auction.bidders).to eq(['Megan'])
+      @item4.add_bid(@attendee3, 50)
+      expect(@auction.bidders).to eq(['Megan', 'Mike'])
+      @item3.add_bid(@attendee2, 15)
+      expect(@auction.bidders).to eq(['Megan', 'Mike', 'Bob'])
+    end
+  end
+
 
 
 end

@@ -2,6 +2,7 @@ class Auction
   attr_reader :items
   def initialize
     @items = []
+    @bidders = []
   end
 
   def add_item(item)
@@ -21,6 +22,15 @@ class Auction
       item.bids.empty?
     end
     no_bids
+  end
+
+  def bidders
+    @items.each do |item|
+      item.bids.keys.each do |person|
+        @bidders << person.name
+      end
+    end
+    @bidders.uniq
   end
 
   def potential_revenue
